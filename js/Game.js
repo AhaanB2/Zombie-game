@@ -101,7 +101,7 @@ class Game {
           //camera.position.x = displayWidth/2;
           //camera.position.y = cars[index-1].y;
           //players [index - 1].collide(ivnvisprite)
-          if(keyDown("space") && player.index !== null){
+          if(touches.length > 0 || keyDown("space") && player.index !== null){
             var gun = createSprite(players[index - 1].x,players[index - 1].y ,20,50)
             gun.addImage(bulletimg)
             gun.velocityY = -12
@@ -109,6 +109,7 @@ class Game {
             Gungroup.add(gun)
             gun.scale = 0.1
             gun.lifetime = displayHeight /12 
+            touches = []
           }
           for (var i = 0; i < Zombiegroup.length; i++){
             if (Zombiegroup.get(i).isTouching(Gungroup)){
@@ -135,21 +136,25 @@ class Game {
 
     
 
-    if(keyIsDown(UP_ARROW) && player.index !== null){
+    if(touches.length > 0 || keyIsDown(UP_ARROW) && player.index !== null){
       player.Y +=10
       player.update();
+      touches = []
     }
-    if(keyIsDown(DOWN_ARROW) && player.index !== null){
+    if(touches.length > 0 || keyIsDown(DOWN_ARROW) && player.index !== null){
       player.Y -=10
       player.update();
+      touches = []
     }
-    if(keyIsDown(RIGHT_ARROW) && player.index !== null){
+    if(touches.length > 0 || keyIsDown(RIGHT_ARROW) && player.index !== null){
       player.X +=10
       player.update();
+      touches = []
     }
-    if(keyIsDown(LEFT_ARROW) && player.index !== null){
+    if(touches.length > 0 || keyIsDown(LEFT_ARROW) && player.index !== null){
       player.X -=10
       player.update();
+      touches = []
     }
     
   
